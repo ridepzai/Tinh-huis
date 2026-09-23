@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A tiny ask ♡</title>
+<style>
+:root{--ink:#222;--red:#d96858;--green:#b9d8bd;--paper:#fffdfb;--pink:#f4d9d5}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f8e9e6,#eef5ee);font-family:Arial,sans-serif;color:var(--ink);min-height:100vh;overflow-x:hidden}
+.wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{width:min(720px,100%);min-height:680px;background:rgba(255,253,251,.96);border:1px solid #eadfda;border-radius:30px;box-shadow:0 20px 70px #8e766d22;padding:38px 28px;position:relative;overflow:hidden}
+.pill{display:inline-block;border:1px solid #d9c9c4;border-radius:999px;padding:9px 18px;letter-spacing:2px;font-size:12px;font-weight:700;color:#777;background:#fff}
+h1{font-family:Georgia,serif;font-size:clamp(48px,9vw,82px);line-height:.95;margin:25px 0 12px;font-weight:500}
+em{color:var(--red)}.sub{color:#666;font-size:17px;margin-bottom:20px}.flower{font-size:90px;filter:opacity(.45);margin:15px 0 25px}
+.btn{border:0;border-radius:18px;padding:18px 24px;font-size:22px;font-weight:800;cursor:pointer;transition:.2s}
+.yes{background:#b8d9bd;color:#143b20;width:100%}.yes:hover{transform:scale(1.015)}
+.no{background:#fff;border:1px solid #ddd;color:#9b6259;position:absolute;font-size:14px;padding:10px 15px}
+.hidden{display:none!important}.center{text-align:center}.tiny{font-size:13px;color:#888}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0}
+label{display:block;text-align:left;font-size:12px;font-weight:800;letter-spacing:1px;color:#777;margin-bottom:8px}
+input,textarea{width:100%;padding:16px;border:1px solid #ddd5d1;border-radius:16px;background:white;font-size:17px;outline:none}
+.options{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:20px 0 30px}.opt{border:1px solid #c9d8ca;background:#e7f0e5;border-radius:999px;padding:14px 20px;font-size:16px;cursor:pointer}.opt.sel{background:#d56a59;color:#fff;border-color:#d56a59}
+.action{width:100%;background:#b8d9bd;border:0;border-radius:18px;padding:17px;font-size:18px;font-weight:800;cursor:pointer}
+.letter{background:#fffefb;border:1px solid #e5d9d2;border-radius:18px;padding:26px;text-align:left;line-height:1.7;box-shadow:0 8px 30px #0000000a}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden}.confetti i{position:absolute;top:-30px;font-style:normal;animation:fall 3.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:0}}
+.smalllink{margin-top:16px;color:#888;text-decoration:underline;cursor:pointer}
+@media(max-width:560px){.card{min-height:620px;padding:28px 18px}.grid{grid-template-columns:1fr}h1{font-size:52px}.flower{font-size:70px}}
+</style>
+</head>
+<body>
+<div class="wrap"><main class="card">
+
+<section id="s1" class="center">
+  <div class="pill">A TINY ASK</div>
+  <h1>Will you go<br><em>out</em> with me?</h1>
+  <div id="tease" class="sub">Be honest 👀</div>
+  <div class="flower">🌷</div>
+  <button class="btn yes" id="yes1">YES</button>
+  <button class="no" id="noBtn">NO</button>
+  <div class="tiny" style="margin-top:18px">There is technically a NO button. Technically.</div>
+</section>
+
+<section id="s2" class="hidden">
+  <div class="center"><div class="pill">LET'S MAKE IT OFFICIAL</div>
+  <h1>Pick the <em>day,</em><br><em>time</em> & plan</h1></div>
+  <div class="grid">
+    <div><label>WHICH DAY?</label><input id="date" type="date"></div>
+    <div><label>WHAT TIME?</label><input id="time" type="time"></div>
+  </div>
+  <div class="center"><label>THE PLAN</label>
+    <div class="options" id="plans">
+      <button class="opt" data-v="☕ Coffee">☕ Coffee</button>
+      <button class="opt" data-v="🎬 A movie">🎬 A movie</button>
+      <button class="opt" data-v="🍝 Dinner">🍝 Dinner</button>
+      <button class="opt" data-v="🌳 Walk in the park">🌳 Walk in the park</button>
+      <button class="opt" data-v="🍸 Drinks">🍸 Drinks</button>
+      <button class="opt" data-v="🎁 Surprise me">🎁 Surprise me</button>
+    </div>
+  </div>
+  <button class="action" id="seal">Seal it with a letter ❤️</button>
+  <div class="smalllink center" id="back1">← back</div>
+</section>
+
+<section id="s3" class="hidden">
+  <div class="center"><div class="pill">DATE CONFIRMED</div>
+  <h1>Yay — it's a <em>date.</em></h1>
+  <div class="flower">🌷</div>
+  <p class="sub">I knew you had great taste 😎</p></div>
+  <div class="letter">
+    <p><b>Dear Tình,</b></p>
+    <p>Okay, so this is officially a date. No pressure, no complicated plan — just good food, good vibes, terrible jokes, and some time together.</p>
+    <p id="details"></p>
+    <p>See you there. I’m already smiling a little too much. ❤️</p>
+    <p style="text-align:right">— Ri</p>
+  </div>
+  <button class="action" id="restart" style="margin-top:18px">Make another plan ✨</button>
+</section>
+
+</main></div><div class="confetti" id="confetti"></div>
+
+<form id="sendResult" action="https://formsubmit.co/kcundepzai@gmail.com" method="POST" style="display:none">
+  <input type="hidden" name="_subject" value="💌 Tình đã chọn date">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="Date" id="mailDate">
+  <input type="hidden" name="Time" id="mailTime">
+  <input type="hidden" name="Plan" id="mailPlan">
+</form>
+<script>
+const $=x=>document.querySelector(x), $$=x=>document.querySelectorAll(x);
+const s1=$("#s1"),s2=$("#s2"),s3=$("#s3"),no=$("#noBtn"),tease=$("#tease");
+let dodges=0, chosen="";
+const noMessages=[
+  "NO",
+  "Are you sure?",
+  "Think again.",
+  "Pick the other one.",
+  "Nope, not that one 😭",
+  "Maybe say YES?",
+  "You really mean NO?",
+  "Nice try 😭",
+  "Just click YES already.",
+  "Okay... one more time?"
+];
+function dodge(){
+ dodges++;
+ no.textContent=noMessages[Math.min(dodges,noMessages.length-1)];
+ tease.textContent=dodges===1 ? "Nice try — it dodged you." : "The NO button is getting shy...";
+ const card=document.querySelector(".card"), r=card.getBoundingClientRect();
+ const maxX=Math.max(20,r.width-150), maxY=Math.max(100,r.height-170);
+ no.style.left=(Math.random()*maxX+20)+"px";
+ no.style.top=(Math.random()*maxY+80)+"px";
+}
+no.addEventListener("pointerenter",dodge);
+no.addEventListener("click",dodge);
+$("#yes1").onclick=()=>{s1.classList.add("hidden");s2.classList.remove("hidden");};
+$$(".opt").forEach(b=>b.onclick=()=>{$$(".opt").forEach(x=>x.classList.remove("sel"));b.classList.add("sel");chosen=b.dataset.v});
+$("#back1").onclick=()=>{s2.classList.add("hidden");s1.classList.remove("hidden")};
+$("#seal").onclick=()=>{
+ if(!$("#date").value||!$("#time").value||!chosen){alert("Chọn ngày, giờ và plan trước nha 😭");return}
+ const d=new Date($("#date").value+"T00:00:00");
+ const date=d.toLocaleDateString("en-US",{weekday:"long",month:"short",day:"numeric",year:"numeric"});
+ $("#details").textContent=`📅 ${date} · ⏰ ${$("#time").value} · ${chosen}`;
+
+ // Send the selected date/time/plan to Ri's email.
+ $("#mailDate").value=date;
+ $("#mailTime").value=$("#time").value;
+ $("#mailPlan").value=chosen;
+ const form=$("#sendResult");
+ fetch(form.action,{method:"POST",body:new FormData(form),mode:"no-cors"})
+   .catch(()=>{});
+
+ s2.classList.add("hidden");s3.classList.remove("hidden");burst();
+};
+$("#restart").onclick=()=>{s3.classList.add("hidden");s2.classList.remove("hidden")};
+function burst(){
+ const box=$("#confetti");box.innerHTML="";
+ const icons=["💗","💚","💙","💛","💜","✨","🌸"];
+ for(let i=0;i<70;i++){let e=document.createElement("i");e.textContent=icons[Math.floor(Math.random()*icons.length)];e.style.left=Math.random()*100+"vw";e.style.animationDelay=Math.random()*1.2+"s";e.style.fontSize=(14+Math.random()*25)+"px";box.appendChild(e)}
+ setTimeout(()=>box.innerHTML="",5000);
+}
+</script>
+</body>
+</html>
